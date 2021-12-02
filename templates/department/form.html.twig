@@ -1,0 +1,22 @@
+{% extends 'department/index.html.twig' %}
+
+{% block body_method %}
+{{ form_start(form,{'attr':{'class':'form-control'}}) }}
+{% if method == "add" %}
+{{ form_row(form.update,{'attr':{'style':'display:none' }}) }}
+{{ form_row(form.delete,{'attr':{'style':'display:none' }}) }}
+{{ form_row(form.cancel,{'attr':{'style':'display:none' }}) }}
+{% elseif method == "edit" %}
+{{ form_row(form.add,{'attr':{'style':'display:none' }}) }}
+{{ form_row(form.delete,{'attr':{'style':'display:none' }}) }}
+{{ form_row(form.cancel,{'attr':{'style':'display:none' }}) }}
+{% elseif method == "delete" %}
+{{ form_row(form.add,{'attr':{'style':'display:none' }}) }}
+{{ form_row(form.update,{'attr':{'style':'display:none' }}) }}
+{% endif %}
+{{ form_end(form) }}
+
+
+ 
+
+{% endblock %}

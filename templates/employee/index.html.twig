@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EmpController!
+{% endblock %}
+
+{% block body %}
+{% include "nav.html.twig" %}
+	<div class="container">
+		<div class="row">
+			<div class="col"></div>
+			<div class="col-8">
+            {% include "flash.html.twig" %}
+				{% block body_method %}
+                    <a href={{ path('employee.add') }} class="btn btn-dark">add emp</a>
+					<table class="table table-dark table-striped">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Full Name</th>
+								<th>Contact</th>
+								<th>Department</th>
+								<th>Status</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for employees in employee %}
+								<tr>
+									<td>
+										{{ employees.id }}</td>
+									<td>
+										{{ employees.fullname }}</td>
+									<td>
+										{{ employees.contact }}</td>
+									<td>
+										{{ employees.department }}</td>
+									<td>
+										{{ employees.status }}</td>
+                                    <td>
+                                        <a href={{ path('employee.show',{ id:employees.id }) }} class="btn btn-primary" style="margin-bottom:5px;">view</a>
+                                        <a href={{ path('employee.edit',{ id:employees.id } ) }} class="btn btn-primary" style="margin-bottom:5px;">edit</a>
+                                        <a href={{ path('employee.delete',{ id:employees.id }) }} class="btn btn-danger" style="margin-bottom:5px;">delete</a>
+										</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				{% endblock %}
+			</div>
+			<div class="col"></div>
+		</div>
+	</div>
+    {% include "foot.html.twig" %}
+{% endblock %}
